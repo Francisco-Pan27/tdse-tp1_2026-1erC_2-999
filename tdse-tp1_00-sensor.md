@@ -1,7 +1,7 @@
-# Intelligent Parking Management System - Automated Parking System - Parking Ticket Dispenser Machine (Entry)
+# Intelligent Parking Management System - Automated Parking System - Parking Ticket Dispenser Machine (Entry) - Módulo Sensor
 
 ## Descripción del proyecto
-A continuación se detallan los eventos y acciones de un sensor, modelado con un botón.
+A continuación se detallan los eventos y acciones del módulo Sensor, modelado con un botón.
 
 ## Solución
 ### Eventos
@@ -11,14 +11,16 @@ A continuación se detallan los eventos y acciones de un sensor, modelado con un
 ### Acciones
 * **tick=DEL_BTN_01_MAX**: define el tiempo máximo espera para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
 * **tick--**: decrementa el valor del contador.
-* **raise EV_SYS_XX_DOWN**: dispara el evento presionar botón.
-* **raise EV_SYS_XX_UP**: dispara el evento soltar botón.
+* **raise EV_SYS_XX_DOWN**: dispara el evento "botón presionado", que puede ser enviado al próximo módulo.
+* **raise EV_SYS_XX_UP**: dispara el evento "botón soltado", que puede ser enviado al próximo módulo.
 
 ### Estados
-* **ST_BTN_01_UP**: el botón no esta siendo presionado, manteniendose arriba.
-* **ST_BTN_01_FALLING**: el botón esta siendo presionado, hacia un posible cambio de estado.
-* **ST_BTN_01_DOWN**: el botón esta siendo presionado, manteniendose abajo.
-* **ST_BTN_01_RISING**: el botón no esta siendo presionado, hacia un posible cambio de estado.
+* **ST_BTN_01_UP**: el botón no está siendo presionado, manteniéndose arriba.
+* **ST_BTN_01_FALLING**: el botón está siendo presionado, hacia un posible cambio de estado.
+* **ST_BTN_01_DOWN**: el botón está siendo presionado, manteniéndose abajo.
+* **ST_BTN_01_RISING**: el botón no está siendo presionado, hacia un posible cambio de estado.
+
+### Tabla de transiciones entre estados
 
 <br>
 <table>
