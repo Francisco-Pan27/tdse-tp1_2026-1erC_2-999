@@ -1,9 +1,13 @@
 # Intelligent Parking Management System - Automated Parking System - Parking Ticket Dispenser Machine (Entry) - Módulo System
 
 ## Descripción del proyecto
-A continuación se detallan los eventos y acciones de un sensor , modelado con un botón.
+A continuación se detallan los eventos y acciones del módulo System para un único sistema.
 
 ## Solución
+
+### Estructura
+El módulo posee una interfaz donde el módulo Sensor deja los mensajes a procesar (en una estructura específica para ello denominada ```message_queue``` en la tabla de abajo), y un núcleo de procesamiento que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
+
 ### Eventos
 * **EV_SYS_01_DOWN**: el botón fue presionado.
 * **EV_SYS_01_UP**: el botón dejó de ser presionado.
@@ -13,8 +17,8 @@ A continuación se detallan los eventos y acciones de un sensor , modelado con u
 * **raise EV_ACT_LED_01_OFF**: dispara el evento "apagar led" para ser enviado al próximo módulo.
 
 ### Estados
-* **ST_SYS_BUSY**: el sistema esta procesando un evento recibido.
-* **ST_SYS_IDLE**: el sistema se encuentra libre a la espera de eventos.
+* **ST_SYS_IDLE**: el sistema se encuentra a la espera de eventos.
+* **ST_SYS_BUSY**: el sistema está procesando un evento recibido.
 
 ### Tabla de transiciones entre estados
 
@@ -34,30 +38,24 @@ A continuación se detallan los eventos y acciones de un sensor , modelado con u
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2"><b>ST_SYS_IDLE</b></td>
+      <td rowspan="1"><b>ST_SYS_IDLE</b></td>
+      <td></td>
+      <td>[<tt>message_queue.size() > 0</tt>]</td>
+      <td>ST_SYS_BUSY</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2">ST_SYS_BUSY</td>
       <td>EV_SYS_01_DOWN</td>
       <td></td>
-      <td>ST_SYS_BUSY</td>
-      <td>raise EV_ACT_LED_01_ON   tick = DEL_BTN_01_MAX</td>
+      <td>ST_SYS_IDLE</td>
+      <td><tt>raise</tt> EV_ACT_LED_01_ON <br> <tt>message_queue.pop()</tt></td>
     </tr>
     <tr>
       <td>EV_SYS_01_UP</td>
       <td></td>
-      <td>ST_SYS_BUSY</td>
-      <td>raise EV_ACT_LED_01_OFF   tick = DEL_BTN_01_MAX</td>
-    </tr>
-    <tr>
-      <td rowspan="2">ST_SYS_BUSY</td>
-      <td></td>
-      <td>[tick>0]</td>
-      <td>ST_SYS_BUSY</td>
-      <td>tick--</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>[tick == 0]</td>
       <td>ST_SYS_IDLE</td>
-      <td></td>
+      <td><tt>raise</tt> EV_ACT_LED_01_OFF <br> <tt>message_queue.pop()</tt></td>
     </tr>
   </tbody>
 </table>
