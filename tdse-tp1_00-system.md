@@ -34,27 +34,29 @@ A continuación se detallan los eventos y acciones de un sensor , modelado con u
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2"><b>ST_BTN_01_UP</b></td>
-      <td>EV_BTN_01_UP</td>
+      <td rowspan="2"><b>ST_SYS_IDLE</b></td>
+      <td>EV_SYS_01_DOWN</td>
       <td></td>
-      <td>ST_BTN_01_UP</td>
-      <td></td>
+      <td>ST_SYS_BUSY</td>
+      <td>raise EV_ACT_LED_01_ON   tick = DEL_BTN_01_MAX</td>
     </tr>
     <tr>
-      <td>EV_BTN_01_DOWN</td>
+      <td>EV_SYS_01_UP</td>
       <td></td>
-      <td>ST_BTN_01_FALLING</td>
-      <td>tick = DEL_BTN_01_MAX</td>
+      <td>ST_SYS_BUSY</td>
+      <td>raise EV_ACT_LED_01_OFF   tick = DEL_BTN_01_MAX</td>
     </tr>
     <tr>
-      <td rowspan="2">EV_BTN_01_DOWN</td>
-      <td>[tick > 0]</td>
-      <td>ST_BTN_01_RISING</td>
+      <td rowspan="2">ST_SYS_BUSY</td>
+      <td></td>
+      <td>[tick>0]</td>
+      <td>ST_SYS_BUSY</td>
       <td>tick--</td>
     </tr>
     <tr>
+      <td></td>
       <td>[tick == 0]</td>
-      <td>ST_BTN_01_DOWN</td>
+      <td>ST_SYS_IDLE</td>
       <td></td>
     </tr>
   </tbody>
