@@ -26,7 +26,7 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
 <table>
   <thead>
     <tr>
-      <th colspan="5">Sensor Statechart - State Transition Table </th>
+      <th colspan="5">System Statechart - State Transition Table </th>
     </tr>
     <tr>
       <th>Current State</th>
