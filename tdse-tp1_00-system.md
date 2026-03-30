@@ -42,20 +42,20 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
       <td></td>
       <td>[<tt>message_queue.size() > 0</tt>]</td>
       <td>ST_SYS_BUSY</td>
-      <td></td>
+      <td><tt>event = message_queue.pop()</tt></td>
     </tr>
     <tr>
       <td rowspan="2"><b>ST_SYS_BUSY</b></td>
       <td>EV_SYS_01_DOWN</td>
       <td></td>
       <td>ST_SYS_IDLE</td>
-      <td><tt>raise</tt> EV_ACT_LED_01_ON <br> <tt>message_queue.pop()</tt></td>
+      <td><tt>raise</tt> EV_ACT_LED_01_ON </td>
     </tr>
     <tr>
       <td>EV_SYS_01_UP</td>
       <td></td>
       <td>ST_SYS_IDLE</td>
-      <td><tt>raise</tt> EV_ACT_LED_01_OFF <br> <tt>message_queue.pop()</tt></td>
+      <td><tt>raise</tt> EV_ACT_LED_01_OFF</td>
     </tr>
   </tbody>
 </table>
