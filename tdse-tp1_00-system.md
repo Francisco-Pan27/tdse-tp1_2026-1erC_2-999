@@ -13,8 +13,8 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
 * **EV_SYS_01_UP**: el botón dejó de ser presionado.
 
 ### Acciones
-* **raise EV_ACT_LED_01_ON**: dispara el evento "encender led" para ser enviado al próximo módulo.
-* **raise EV_ACT_LED_01_OFF**: dispara el evento "apagar led" para ser enviado al próximo módulo.
+* **raise EV_ACT_LED_01_ON**: dispara el evento "encender LED" para ser enviado al próximo módulo.
+* **raise EV_ACT_LED_01_OFF**: dispara el evento "apagar LED" para ser enviado al próximo módulo.
 
 ### Estados
 * **ST_SYS_IDLE**: el sistema se encuentra a la espera de eventos.
@@ -45,7 +45,7 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
       <td></td>
     </tr>
     <tr>
-      <td rowspan="2">ST_SYS_BUSY</td>
+      <td rowspan="2"><b>ST_SYS_BUSY</b></td>
       <td>EV_SYS_01_DOWN</td>
       <td></td>
       <td>ST_SYS_IDLE</td>
