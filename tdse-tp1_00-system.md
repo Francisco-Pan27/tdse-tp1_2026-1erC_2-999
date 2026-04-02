@@ -9,16 +9,20 @@ A continuación se detallan los eventos y acciones del módulo System para un ú
 El módulo posee una interfaz donde el módulo Sensor deja los mensajes a procesar (en una estructura específica para ello denominada ```message_queue``` en la tabla de abajo), y un núcleo de procesamiento que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
 
 ### Eventos
-* **EV_SYS_01_DOWN**: el botón fue presionado.
-* **EV_SYS_01_UP**: el botón dejó de ser presionado.
+* **EV_SYS_SENSOR_COIL_DETECTOR**: El sensor detecta presencia de un vehiculo.  
+* **EV_SYS_MANUAL_BUTTON_PRESS**: El usuario presiona el boton.
+* **EV_SYS_NOT_SENSOR_COIL_DETECTOR**: El sensor deja de detectar un vehiculo.
 
 ### Acciones
 * **raise EV_ACT_LED_01_ON**: dispara el evento "encender LED" para ser enviado al próximo módulo.
 * **raise EV_ACT_LED_01_OFF**: dispara el evento "apagar LED" para ser enviado al próximo módulo.
 
 ### Estados
-* **ST_SYS_IDLE**: el sistema se encuentra a la espera de eventos.
-* **ST_SYS_BUSY**: el sistema está procesando un evento recibido.
+* **ST_SYS_IDLE**: El sistema se encuentra a la espera de eventos.
+* **ST_SYS_CAR_ARRIVE**: Se detecta la llegada de un vehiculo.
+* **ST_SYS_PRINT_TICKET**: Se imprime el comprabante de llegada.
+* **ST_SYS_UP_BARRIER**: La barrera se encuentra levantada permitiendo el paso del vehiculo.
+* **ST_SYS_DOWN_BARRIER**:  La barrera se encuentra abajo impidiendo el paso del vehiculo.
 
 ### Tabla de transiciones entre estados
 
