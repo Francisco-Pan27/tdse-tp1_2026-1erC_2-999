@@ -9,7 +9,8 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
 * **EV_BTN_01_UP**: se suelta el botón.
 
 ### Acciones
-* **tick=DEL_BTN_01_MAX**: define el tiempo máximo espera para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
+* **tick=DEL_BTN_01_MIN**: define la cantidad de ticks mínima.
+* **tick=DEL_BTN_01_MAX**: define la cantidad máxima de ticks para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
 * **tick--**: decrementa el valor del contador.
 * **raise EV_SYS_XX_DOWN**: dispara el evento "botón presionado", que puede ser enviado al próximo módulo.
 * **raise EV_SYS_XX_UP**: dispara el evento "botón soltado", que puede ser enviado al próximo módulo.
@@ -40,9 +41,9 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
     <tr>
       <td rowspan="2"><b>ST_BTN_01_UP</b></td>
       <td>EV_BTN_01_UP</td>
-      <td></td>
+      <td>tick = DEL_BTN_01_MIN</td>
       <td>ST_BTN_01_UP</td>
-      <td></td>
+      <td>raise EV_SYS_01_UP</td>
     </tr>
     <tr>
       <td>EV_BTN_01_DOWN</td>
@@ -53,7 +54,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
     <tr>
       <td rowspan="4"><b>ST_BTN_01_FALLING</b></td>
       <td rowspan="2">EV_BTN_01_UP</td>
-      <td>[tick > 0]</td>
+      <td>[tick > DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_FALLING</td>
       <td>tick--</td>
     </tr>
@@ -64,7 +65,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
     </tr>
     <tr>
       <td rowspan="2">EV_BTN_01_DOWN</td>
-      <td>[tick > 0]</td>
+      <td>[tick > DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_FALLING</td>
       <td>tick--</td>
     </tr>
@@ -89,7 +90,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
     <tr>
       <td rowspan="4"><b>ST_BTN_01_RISING</b></td>
       <td rowspan="2">EV_BTN_01_UP</td>
-      <td>[tick > 0]</td>
+      <td>[tick > DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_RISING</td>
       <td>tick--</td>
     </tr>
@@ -100,7 +101,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
     </tr>
     <tr>
       <td rowspan="2">EV_BTN_01_DOWN</td>
-      <td>[tick > 0]</td>
+      <td>[tick > DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_RISING</td>
       <td>tick--</td>
     </tr>
