@@ -59,7 +59,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
       <td>tick--</td>
     </tr>
     <tr>
-      <td>[tick == 0]</td>
+      <td>[tick == DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_UP</td>
       <td></td>
     </tr>
@@ -70,7 +70,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
       <td>tick--</td>
     </tr>
     <tr>
-      <td>[tick == 0]</td>
+      <td>[tick == DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_DOWN</td>
       <td>raise EV_SYS_01_DOWN</td>
     </tr>
@@ -95,7 +95,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
       <td>tick--</td>
     </tr>
     <tr>
-      <td>[tick == 0]</td>
+      <td>[tick == DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_UP</td>
       <td>raise EV_SYS_01_UP</td>
     </tr>
@@ -106,7 +106,7 @@ A continuación se detallan los eventos y acciones del módulo Sensor, modelado 
       <td>tick--</td>
     </tr>
     <tr>
-      <td>[tick == 0]</td>
+      <td>[tick == DEL_BTN_01_MIN]</td>
       <td>ST_BTN_01_DOWN</td>
       <td></td>
     </tr>
