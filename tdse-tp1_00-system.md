@@ -25,8 +25,9 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
 * **ST_SYS_IDLE**: El sistema se encuentra a la espera de eventos.
 * **ST_SYS_CAR_ARRIVE**: Se detecta la llegada de un vehículo.
 * **ST_SYS_PRINT_TICKET**: Se imprime el comprabante de llegada.
-* **ST_SYS_SWITCHING_BARRIER**: Se está moviendo la barrera.
+* **ST_SYS_RISING_BARRIER**: Se está levantando la barrera.
 * **ST_SYS_UP_BARRIER**: La barrera se encuentra levantada permitiendo el paso del vehículo.
+* **ST_SYS_LOWERING_BARRIER**: Se está bajando la barrera.
 * **ST_SYS_DOWN_BARRIER**:  La barrera se encuentra abajo impidiendo el paso del vehículo.
 
 ### Tabla de transiciones entre estados
@@ -70,21 +71,48 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
     <tr>
       <td></td>
       <td>[tick == 0]</td>
-      <td>ST_SYS_SWITCHING_BARRIER</td>
+      <td>ST_SYS_RISING_BARRIER</td>
       <td><tt>tick = DEL_SYS_BARRIER</tt> <br> <tt>raise</tt> EV_ACT_LED_YELLOW_ON </td>
     </tr>
     <tr>
-      <td rowspan="2">ST_SYS_PRINT_TICKET</td>
+      <td rowspan="2">ST_SYS_RISING_BARRIER</td>
       <td></td>
       <td>[tick > 0]</td>
-      <td>ST_SYS_PRINT_TICKET</td>
+      <td>ST_SYS_RISING_BARRIER</td>
       <td><tt>tick--</tt></td>
     </tr>
     <tr>
       <td></td>
       <td>[tick == 0]</td>
-      <td>ST_SYS_SWITCHING_BARRIER</td>
-      <td><tt>tick = DEL_SYS_BARRIER</tt> <br> <tt>raise</tt> EV_ACT_LED_YELLOW_ON </td>
+      <td>ST_SYS_UP_BARRIER</td>
+      <td><tt>raise</tt> EV_ACT_LED_GREEN_ON </td>
+    </tr>
+    <tr>
+      <td rowspan="1">ST_SYS_UP_BARRIER</td>
+      <td>EV_SYS_NOT_SENSOR_COIL_DETECTOR</td>
+      <td></td>
+      <td>ST_SYS_LOWERING_BARRIER</td>
+      <td><tt>tick = DEL_SYS_BARRIER</tt> <br> <tt>raise</tt> EV_ACT_LED_YELLOW_ON</td>
+    </tr>
+    <tr>
+      <td rowspan="2">ST_SYS_LOWERING_BARRIER</td>
+      <td></td>
+      <td>[tick > 0]</td>
+      <td>ST_SYS_LOWERING_BARRIER</td>
+      <td><tt>tick--</tt></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[tick == 0]</td>
+      <td>ST_SYS_DOWN_BARRIER</td>
+      <td><tt>raise</tt> EV_ACT_LED_RED_PULSE </td>
+    </tr>
+    <tr>
+      <td rowspan="1">ST_SYS_DOWN_BARRIER</td>
+      <td></td>
+      <td></td>
+      <td>ST_SYS_IDLE</td>
+      <td><tt>raise</tt> EV_ACT_LED_OFF</td>
     </tr>
   </tbody>
 </table>
