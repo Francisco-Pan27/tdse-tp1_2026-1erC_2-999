@@ -6,7 +6,7 @@ A continuación se detallan los eventos y acciones del módulo System para un ú
 ## Solución
 
 ### Estructura
-El módulo posee una interfaz donde el módulo Sensor deja los mensajes a procesar (en una estructura específica para ello denominada ```message_queue``` en la tabla de abajo), y un núcleo de procesamiento que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
+El módulo posee una interfaz donde el módulo Sensor deja los mensajes a procesar y un núcleo de procesamiento que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
 
 ### Eventos
 * **EV_SYS_SENSOR_COIL_DETECTOR**: El sensor detecta presencia de un vehículo.  
@@ -29,6 +29,11 @@ El módulo posee una interfaz donde el módulo Sensor deja los mensajes a proces
 * **ST_SYS_UP_BARRIER**: La barrera se encuentra levantada permitiendo el paso del vehículo.
 * **ST_SYS_LOWERING_BARRIER**: Se está bajando la barrera.
 * **ST_SYS_DOWN_BARRIER**:  La barrera se encuentra abajo impidiendo el paso del vehículo.
+
+### Variables y constantes
+* **tick**: unidad de tiempo del procesador, empleada para disparar cambios de estado por tiempo.
+* **DEL_SYS_PRINT**: cantidad de ticks para imprimir el comprabante de llegada.
+* **DEL_SYS_BARRIER**: cantidad de ticks para subir o bajar la barrera.
 
 ### Tabla de transiciones entre estados
 
