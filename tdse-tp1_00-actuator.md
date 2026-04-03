@@ -15,15 +15,22 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
  * **EV_ACT_LED_OFF**: dispara el evento "apagar LED" 
 
 ### Acciones
- * **led=LED_ON**: Se enciende el LED.             
- * **led=LED_OFF**: Se apaga el LED.
- * **color=[R,G,B]**: Se especifica el color del LED.
+ * **entry / op_led(led, color)**: Se ejecuta la operación de LED.        
 
 ### Estados
 * **ST_ACT_LED_ON:** El LED se encuentra encendido.
 * **ST_ACT_LED_BLINK**: El LED  parpadea.
 * **ST_ACT_LED_PULSE**: Se enciede una sola vez el LED.
-* **ST_ACT_LED_OFF**: El LED no esta encendido. 
+* **ST_ACT_LED_OFF**: El LED no esta encendido.
+
+### Variables y constantes
+* **led=LED_ON**: Se enciende el LED.             
+* **led=LED_OFF**: Se apaga el LED.
+* **color=[R,G,B]**: Se especifica el color del LED.
+* **tick=DEL_LED_MIN**: define la cantidad de ticks mínima.
+* **tick=DEL_LED_BLINK_MAX**: define la cantidad máxima de ticks para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
+* **tick=DEL_LED_PULSE_MAX**: define la cantidad máxima de ticks para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
+* **tick--**: decrementa el valor del contador.
 
 ### Tabla de transiciones entre estados
 
@@ -45,42 +52,66 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
     <tr>
       <td rowspan="3"><b>ST_ACT_LED_OFF</b></td>
       <td>EV_ACT_LED_ON</td>
-      <td>color!=NULL</td>
+      <td>color != NULL</td>
       <td>ST_ACT_LED_ON</td>
-      <td>led=LED_ON</td>
+      <td>led = LED_ON <br> entry / op_led(led, color)</td>
     </tr>
     <tr>
       <td>EV_ACT_LED_BLINK</td>
-      <td>color!=NULL</td>
+      <td>color != NULL</td>
       <td>ST_ACT_LED_BLINK</td>
-      <td>led=LED_ON</td>
+      <td>tick = DEL_LED_BLINK_MAX <br> led=LED_ON <br> entry / op_led(led, color)</td>
     </tr>
     <tr>
       <td>EV_ACT_LED_PULSE</td>
-      <td>color!=NULL</td>
+      <td>color != NULL</td>
       <td>ST_ACT_LED_PULSE</td>
-      <td>led=LED_ON</td>
+      <td>tick = DEL_LED_PULSE_MAX <br> led = LED_ON <br> entry / op_led(led, color)</td>
     </tr>
     <tr>
       <td><b>ST_ACT_LED_ON</b></td>
       <td>EV_ACT_LED_OFF</td>
       <td></td>
       <td>ST_ACT_LED_OFF</td>
-      <td>led=LED_OFF</td>
+      <td>led = LED_OFF <br> entry / op_led(led, color)</td>
     </tr>
     <tr>
-      <td><b>ST_ACT_LED_BLINK</b></td>
+      <td rowspan="3"><b>ST_ACT_LED_BLINK</b></td>
       <td>EV_ACT_LED_OFF</td>
       <td></td>
       <td>ST_ACT_LED_OFF</td>
-      <td>led=LED_OFF</td>
+      <td>led = LED_OFF <br> entry / op_led(led, color)</td>
     </tr>
     <tr>
-      <td><b>ST_ACT_LED_PULSE</b></td>
+      <td></td>
+      <td>[tick == DEL_LED_MIN]</td>
+      <td>ST_ACT_LED_BLINK</td>
+      <td>led = !led <br> entry / op_led(led, color)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[tick < DEL_LED_MAX]</td>
+      <td>ST_ACT_LED_BLINK</td>
+      <td>tick--</td>
+    </tr>
+    <tr>
+      <td rowspan="3"><b>ST_ACT_LED_PULSE</b></td>
       <td>EV_ACT_LED_OFF</td>
       <td></td>
       <td>ST_ACT_LED_OFF</td>
-      <td>led=LED_OFF</td>
+      <td>led = LED_OFF <br> entry / op_led(led, color)</td>
+    </tr>
+        <tr>
+      <td></td>
+      <td>[tick == DEL_LED_MIN]</td>
+      <td>ST_ACT_LED_PULSE</td>
+      <td>led = !led <br> entry / op_led(led, color)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[tick < DEL_LED_PULSE_MAX]</td>
+      <td>ST_ACT_LED_PULSE</td>
+      <td>tick--</td>
     </tr>
   </tbody>
 </table>
