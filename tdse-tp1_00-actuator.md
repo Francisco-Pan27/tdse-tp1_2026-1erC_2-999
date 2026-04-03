@@ -17,8 +17,12 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
 * **turn_LED_off()**: apaga el LED.
 
 ### Estados
-* **ST_ACT_IDLE**: el sistema se encuentra a la espera de eventos.
-* **ST_ACT_BUSY**: el sistema está procesando un evento recibido.
+* **ST_ACT_LED_RED_ON:** Se enciende el LED rojo.
+* **ST_ACT_LED_RED_BLINK**: El LED rojo parpadea.
+* **ST_ACT_LED_YELLOW_ON**: Se enciede el LED amarillo.
+* **ST_ACT_LED_GREEN_ON**: Se enciede el LED verde.
+* **ST_ACT_LED_RED_PULSE**: Se enciede una sola vez el LED rojo.
+* **ST_ACT_LED_OFF**: El LED no esta encendido. 
 
 ### Tabla de transiciones entre estados
 
