@@ -9,19 +9,19 @@ A continuación se detallan los eventos y acciones del módulo Actuator, modelad
 El módulo posee una interfaz donde el módulo System deja los mensajes a procesar (en una estructura específica para ello denominada ```message_queue``` en la tabla de abajo), y un núcleo de actuación que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
 
 ### Eventos
-* **EV_ACT_LED_01_ON**: indica que se debe encender el LED.
-* **EV_ACT_LED_01_OFF**: indica que se debe apagar el LED.
+ * **EV_ACT_LED_ON**: dispara el evento "encender LED"             
+ * **EV_ACT_LED_BLINK**: dispara el evento "parpadear LED "
+ * **EV_ACT_LED_PULSE**: dispara el evento "pulso LED " 
+ * **EV_ACT_LED_OFF**: dispara el evento "apagar LED" 
 
 ### Acciones
-* **turn_LED_off()**: enciende el LED.
-* **turn_LED_off()**: apaga el LED.
+ * **EV_ACT_LED_ON**: dispara el evento "encender LED"             
+ * **EV_ACT_LED_OFF**: dispara el evento "apagar LED" 
 
 ### Estados
-* **ST_ACT_LED_RED_ON:** Se enciende el LED rojo.
-* **ST_ACT_LED_RED_BLINK**: El LED rojo parpadea.
-* **ST_ACT_LED_YELLOW_ON**: Se enciede el LED amarillo.
-* **ST_ACT_LED_GREEN_ON**: Se enciede el LED verde.
-* **ST_ACT_LED_RED_PULSE**: Se enciede una sola vez el LED rojo.
+* **ST_ACT_LED_ON:** Se enciende el LED.
+* **ST_ACT_LED_BLINK**: El LED  parpadea.
+* **ST_ACT_LED_PULSE**: Se enciede una sola vez el LED.
 * **ST_ACT_LED_OFF**: El LED no esta encendido. 
 
 ### Tabla de transiciones entre estados
