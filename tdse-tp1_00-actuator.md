@@ -6,7 +6,7 @@ A continuación se detallan los eventos y acciones del módulo Actuator, modelad
 ## Solución
 
 ### Estructura
-El módulo posee una interfaz donde el módulo System deja los mensajes a procesar (en una estructura específica para ello denominada ```message_queue``` en la tabla de abajo), y un núcleo de actuación que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
+El módulo posee una interfaz donde el módulo Actuador deja los mensajes a procesar, y un núcleo de actuación que toma los mensajes de a uno. El objetivo de este diseño es que sea no bloqueante.
 
 ### Eventos
  * **EV_ACT_LED_ON**: dispara el evento "encender LED"             
@@ -28,8 +28,8 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
 * **led=LED_OFF**: Se apaga el LED.
 * **color=[R,G,B]**: Se especifica el color del LED.
 * **tick=DEL_LED_MIN**: define la cantidad de ticks mínima.
-* **tick=DEL_LED_BLINK_MAX**: define la cantidad máxima de ticks para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
-* **tick=DEL_LED_PULSE_MAX**: define la cantidad máxima de ticks para asegurar que el botón fue presionado o soltado y no se trata de un glitch.
+* **tick=DEL_LED_BLINK_MAX**: define la cantidad máxima de ticks para generar el efecto de parpadeo.
+* **tick=DEL_LED_PULSE_MAX**: define la cantidad máxima de ticks para generar el efecto de pulso.
 * **tick--**: decrementa el valor del contador.
 
 ### Tabla de transiciones entre estados
