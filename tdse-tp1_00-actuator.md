@@ -15,11 +15,12 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
  * **EV_ACT_LED_OFF**: dispara el evento "apagar LED" 
 
 ### Acciones
- * **EV_ACT_LED_ON**: dispara el evento "encender LED"             
- * **EV_ACT_LED_OFF**: dispara el evento "apagar LED" 
+ * **led=LED_ON**: Se enciende el LED.             
+ * **led=LED_OFF**: Se apaga el LED.
+ * **color=[R,G,B]**: Se especifica el color del LED.
 
 ### Estados
-* **ST_ACT_LED_ON:** Se enciende el LED.
+* **ST_ACT_LED_ON:** El LED se encuentra encendido.
 * **ST_ACT_LED_BLINK**: El LED  parpadea.
 * **ST_ACT_LED_PULSE**: Se enciede una sola vez el LED.
 * **ST_ACT_LED_OFF**: El LED no esta encendido. 
@@ -42,24 +43,44 @@ El módulo posee una interfaz donde el módulo System deja los mensajes a proces
   </thead>
   <tbody>
     <tr>
-      <td rowspan="1"><b>ST_ACT_IDLE</b></td>
-      <td></td>
-      <td>[<tt>message_queue.size() > 0</tt>]</td>
-      <td>ST_ACT_BUSY</td>
-      <td><tt>event = message_queue.pop()</tt></td>
+      <td rowspan="3"><b>ST_ACT_LED_OFF</b></td>
+      <td>EV_ACT_LED_ON</td>
+      <td>color!=NULL</td>
+      <td>ST_ACT_LED_ON</td>
+      <td>led=LED_ON</td>
     </tr>
     <tr>
-      <td rowspan="2"><b>ST_ACT_BUSY</b></td>
-      <td>EV_ACT_LED_01_ON</td>
-      <td></td>
-      <td>ST_ACT_IDLE</td>
-      <td><tt>turn_LED_on()</tt></td>
+      <td>EV_ACT_LED_BLINK</td>
+      <td>color!=NULL</td>
+      <td>ST_ACT_LED_BLINK</td>
+      <td>led=LED_ON</td>
     </tr>
     <tr>
-      <td>EV_ACT_LED_01_OFF</td>
+      <td>EV_ACT_LED_PULSE</td>
+      <td>color!=NULL</td>
+      <td>ST_ACT_LED_PULSE</td>
+      <td>led=LED_ON</td>
+    </tr>
+    <tr>
+      <td><b>ST_ACT_LED_ON</b></td>
+      <td>EV_ACT_LED_OFF</td>
       <td></td>
-      <td>ST_ACT_IDLE</td>
-      <td><tt>turn_LED_off()</tt></td>
+      <td>ST_ACT_LED_OFF</td>
+      <td>led=LED_OFF</td>
+    </tr>
+    <tr>
+      <td><b>ST_ACT_LED_BLINK</b></td>
+      <td>EV_ACT_LED_OFF</td>
+      <td></td>
+      <td>ST_ACT_LED_OFF</td>
+      <td>led=LED_OFF</td>
+    </tr>
+    <tr>
+      <td><b>ST_ACT_LED_PULSE</b></td>
+      <td>EV_ACT_LED_OFF</td>
+      <td></td>
+      <td>ST_ACT_LED_OFF</td>
+      <td>led=LED_OFF</td>
     </tr>
   </tbody>
 </table>
