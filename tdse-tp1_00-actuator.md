@@ -90,7 +90,7 @@ El módulo posee una interfaz donde el módulo Actuador deja los mensajes a proc
     </tr>
     <tr>
       <td></td>
-      <td>[tick < DEL_LED_MAX]</td>
+      <td>[tick < DEL_LED_BLINK_MAX]</td>
       <td>ST_ACT_LED_BLINK</td>
       <td>tick--</td>
     </tr>
