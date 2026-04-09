@@ -1,6 +1,6 @@
 # FIUBA - Electrónica - Taller de Sistemas Embebidos
 ## Trabajo Práctico N°: 1 - Diagramas de Estado - Modelado
-### 2026-1erC - 2-999
+### 2026-1erC - 2-03
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
